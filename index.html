@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es" translate="no">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Posadas Más Fácil</title>
     
     <link rel="stylesheet" href="./index-C2GExxA5.css">
 
     <script type="module">
-      // Parche preventivo para el Router de Vite en subcarpetas
-      window.__BASE_PATH__ = '/posadas-mas-facil/';
+      // ESTO ES CLAVE: Engañamos al Router para que crea que está en el inicio
+      window.history.replaceState(null, null, '/posadas-mas-facil/');
     </script>
-
+    
     <script type="module" src="./index-BmnUszgU.js"></script>
   </head>
   <body>

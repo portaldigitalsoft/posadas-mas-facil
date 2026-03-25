@@ -5,20 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Posadas Más Fácil</title>
     
-    <base href="/posadas-mas-facil/">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script type="module" src="./script.js"></script>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="script.js"></script>
 
     <script type="text/javascript">
-      // Redirección forzada para evitar el 404 del Router interno
+      // Script Ripley Nivel 3: Forzamos al navegador a ignorar la subcarpeta
       (function() {
-        var currentPath = window.location.pathname;
-        if (currentPath.includes('posadas-mas-facil') && currentPath !== '/posadas-mas-facil/') {
+        var l = window.location;
+        if (l.pathname.split('/').filter(Boolean).length > 1) {
+          // Si el router se confunde con la ruta, lo reseteamos al inicio del proyecto
           window.history.replaceState(null, null, '/posadas-mas-facil/');
         }
       })();

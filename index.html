@@ -11,22 +11,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <script type="module" src="script.js"></script>
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    
+    <script type="module" src="./script.js"></script>
+    <link rel="stylesheet" href="./index.css">
+
     <script type="text/javascript">
-      // Parche de emergencia para el Router de React
+      // Redirección forzada para evitar el 404 del Router interno
       (function() {
-        var path = window.location.pathname;
-        if (!path.includes('/posadas-mas-facil')) {
-          // Si el router se pierde, lo traemos de vuelta a casa
-          window.history.replaceState(null, null, '/posadas-mas-facil/' + window.location.hash);
+        var currentPath = window.location.pathname;
+        if (currentPath.includes('posadas-mas-facil') && currentPath !== '/posadas-mas-facil/') {
+          window.history.replaceState(null, null, '/posadas-mas-facil/');
         }
       })();
     </script>
+  </head>
+  <body>
+    <div id="root"></div>
   </body>
-      </html>
-      
+</html>

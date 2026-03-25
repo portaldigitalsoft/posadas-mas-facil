@@ -4,13 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Posadas Más Fácil</title>
+    
+    <base href="/posadas-mas-facil/">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" src="./script.js"></script>
-    <link rel="stylesheet" href="./index.css">
+    
+    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
     <div id="root"></div>
+    
+    <script type="text/javascript">
+      // Parche de emergencia para el Router de React
+      (function() {
+        var path = window.location.pathname;
+        if (!path.includes('/posadas-mas-facil')) {
+          // Si el router se pierde, lo traemos de vuelta a casa
+          window.history.replaceState(null, null, '/posadas-mas-facil/' + window.location.hash);
+        }
+      })();
+    </script>
   </body>
-</html>
+      </html>
+      

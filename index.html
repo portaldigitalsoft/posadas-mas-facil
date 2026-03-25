@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Posadas Más Fácil</title>
     
+    <base href="/posadas-mas-facil/">
+
     <link rel="stylesheet" href="index.css">
     <script type="module" src="script.js"></script>
 
     <script type="text/javascript">
-      // Script Ripley Nivel 3: Forzamos al navegador a ignorar la subcarpeta
-      (function() {
-        var l = window.location;
-        if (l.pathname.split('/').filter(Boolean).length > 1) {
-          // Si el router se confunde con la ruta, lo reseteamos al inicio del proyecto
+      // Este script guarda la ruta actual y limpia el camino para el Router de React
+      (function(l) {
+        if (l.pathname === '/posadas-mas-facil' || l.pathname === '/posadas-mas-facil/') {
+          // Si estamos en la raíz del proyecto, le aseguramos al JS que esta es la ruta base
           window.history.replaceState(null, null, '/posadas-mas-facil/');
         }
-      })();
+      }(window.location));
     </script>
   </head>
   <body>

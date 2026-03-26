@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+  <html lang="es" translate="no">
+  <head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+  <title>Posadas Más Fácil</title>
+  <meta name="description" content="Guía de servicios públicos de Posadas, Misiones, Argentina."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#1f2937;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  button{font-family:inherit;cursor:pointer}
+
+  /* ── NAV ── */
+  #navbar{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s;padding:18px 0}
+  #navbar.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(12px);box-shadow:0 1px 12px rgba(0,0,0,.08);padding:12px 0}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+  .nav-brand{display:flex;align-items:center;gap:10px}
+  .nav-brand img{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(255,0,0,.85))}
+  .nav-brand-text{display:flex;flex-direction:column}
+  .nav-brand-title{font-weight:800;font-size:15px;color:#1f2937;line-height:1.1}
+  .nav-brand-sub{font-size:11px;color:#6b7280}
+  .hamburger{background:none;border:none;padding:6px;display:flex;flex-direction:column;gap:5px}
+  .hamburger span{display:block;width:24px;height:2.5px;background:#1f2937;border-radius:2px;transition:transform .25s,opacity .25s}
+  .hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  #mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:49;padding:90px 24px 32px;display:flex;flex-direction:column;gap:0;transform:translateX(-100%);transition:transform .3s ease}
+  #mobile-menu.open{transform:translateX(0)}
+  #mobile-menu a{padding:14px 0;font-size:16px;font-weight:600;color:#1f2937;border-bottom:1px solid #f3f4f6}
+  #mobile-menu .menu-farmacia-btn{margin-top:16px;display:flex;align-items:center;justify-content:center;padding:14px;background:#16a34a;color:#fff;border-radius:12px;font-weight:800;font-size:15px}
+
+  /* ── TICKER ── */
+  @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  #ticker-top,#ticker-bottom{width:100%;height:35px;background:#000;overflow:hidden;display:flex;align-items:center;border-top:1px solid #1e293b;border-bottom:1px solid #1e293b;position:relative;z-index:40}
+  .ticker-track{display:flex;width:max-content;animation:ticker-scroll 40s linear infinite;pointer-events:auto}
+  .ticker-inner{display:inline-flex;align-items:center;white-space:nowrap;font-family:'Inter',sans-serif;font-size:11.5px;color:#f1f5f9;letter-spacing:.02em;padding:0 12px;pointer-events:auto}
+  .ticker-inner a{pointer-events:auto;cursor:pointer;position:relative;z-index:9999}
+  .t-pub{color:#facc15;font-weight:700;margin-right:48px}
+  .t-pub a{color:#facc15;text-decoration:underline}
+  .t-crypto{text-decoration:none;color:#f1f5f9;display:inline-flex;align-items:center;gap:6px;margin-right:0}
+  .t-crypto-label{color:#f97316;font-weight:700}
+  .t-crypto-prices{margin-left:8px;margin-right:16px}
+  .t-bybit{color:#39FF14;font-weight:bold;text-shadow:0 0 8px #39FF14,0 0 2px #39FF14;margin-right:48px}
+  .t-fx{margin-right:48px}
+  .t-fx-label{color:#86efac;font-weight:700}
+  @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+
+  /* ── HERO ── */
+  #hero{min-height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);display:flex;align-items:center;padding:120px 18px 80px;position:relative;overflow:hidden}
+  #hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1598518619673-1a1dc20fcf4e?w=1200&auto=format&fit=crop&q=60') center/cover no-repeat;opacity:.18}
+  .hero-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;margin-bottom:28px;backdrop-filter:blur(8px)}
+  .hero-title{font-size:clamp(32px,8vw,60px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:20px}
+  .hero-title em{font-style:italic;color:#f97316;font-family:'Playfair Display',serif}
+  .hero-sub{font-size:clamp(14px,3vw,18px);color:#94a3b8;line-height:1.6;margin-bottom:36px;max-width:540px}
+  .hero-btns{display:flex;flex-direction:column;gap:12px}
+  .btn-primary{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;background:#f97316;color:#fff;border-radius:14px;font-size:16px;font-weight:800;border:none;transition:background .2s,transform .15s}
+  .btn-primary:hover{background:#ea6c0a;transform:scale(1.02)}
+  .btn-secondary{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:14px;font-size:15px;font-weight:700;backdrop-filter:blur(8px)}
+
+  /* ── SHARE BUTTON ── */
+  #share-btn-wrap{background:#fff;padding:20px 18px;display:flex;justify-content:center}
+  .share-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:16px;font-weight:800;font-size:15px;box-shadow:0 4px 18px rgba(16,185,129,.4);transition:transform .15s,box-shadow .15s}
+  .share-btn:hover{transform:scale(1.03);box-shadow:0 6px 28px rgba(16,185,129,.6)}
+
+  /* ── ABOUT ── */
+  #about{background:#f8fafc;padding:56px 18px}
+  .section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px}
+  .section-title{font-size:clamp(22px,4vw,30px);font-weight:900;margin-bottom:8px}
+  .section-sub{font-size:14px;color:#6b7280;line-height:1.6;margin-bottom:32px}
+  .about-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;max-width:700px}
+  .about-card{background:#fff;border-radius:14px;border:1.5px solid #e5e7eb;padding:16px 14px;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;color:#374151}
+  .about-card-icon{font-size:22px;flex-shrink:0}
+
+  /* ── SERVICES ── */
+  #services{padding:56px 18px;background:#fff}
+  .service-card{background:#fff;border-radius:20px;border:2px solid #e5e7eb;box-shadow:0 4px 24px rgba(0,0,0,.06);padding:28px 24px;margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto}
+  .service-header{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+  .service-icon{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+  .service-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;margin-bottom:3px}
+  .service-title{font-size:19px;font-weight:800;color:#1f2937}
+  .service-desc{font-size:14px;color:#6b7280;line-height:1.6;margin-bottom:16px}
+  .service-links{display:flex;flex-direction:column;gap:10px}
+  .svc-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:12px;font-weight:800;font-size:14px;color:#fff;border:none;transition:opacity .2s}
+  .svc-btn:hover{opacity:.88}
+  /* farmacias card */
+  #farmacias-card{background:#f0fdf4;border-color:#86efac}
+
+  /* ── TRANSPORT ── */
+  #transport{background:#f8fafc;padding:48px 18px}
+  .transport-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px;margin:0 auto}
+  @media(max-width:440px){.transport-cards{grid-template-columns:1fr}}
+
+  /* ── TICKER BOTTOM ── */
+  /* same as top, already declared */
+
+  /* ── COMERCIOS ── */
+  #comercios{background:#fff;padding:48px 18px}
+  .accordion-outer{max-width:700px;margin:0 auto}
+  .acc-item{background:#fff;border-radius:14px;border:1.5px solid #e5e7eb;overflow:hidden;margin-bottom:10px}
+  .acc-header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:15px 18px;background:none;border:none;cursor:pointer;font-size:14px;font-weight:700;color:#1f2937}
+  .acc-header:hover{background:#fafafa}
+  .acc-arrow{font-size:16px;transition:transform .25s;display:inline-block}
+  .acc-body{display:none;padding:14px 16px 16px;border-top:1px solid #f3f4f6}
+  .acc-body.open{display:block}
+  .rubro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+
+  /* Carrusel Comercios */
+  .carousel-wrap{overflow-x:auto;scroll-snap-type:x mandatory;display:flex;gap:12px;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
+  .carousel-wrap::-webkit-scrollbar{display:none}
+  .carousel-slide{min-width:260px;scroll-snap-align:start;flex-shrink:0;border-radius:16px;overflow:hidden;border:1.5px solid #e5e7eb;background:#fff}
+  .carousel-img{width:100%;height:160px;object-fit:cover}
+  .carousel-caption{padding:10px 12px 14px}
+  .carousel-caption strong{display:block;font-size:14px;font-weight:800;color:#1f2937;margin-bottom:4px}
+  .carousel-caption span{font-size:12px;color:#6b7280}
+
+  /* ── DIRECTORIO VIP ── */
+  #directorio{background:#f8fafc;padding:40px 18px 48px}
+  .vip-outer{background:#fff;border-radius:16px;border:2px solid #f3f4f6;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden;max-width:700px;margin:0 auto;transition:border-color .2s,box-shadow .2s}
+  .vip-outer.open{border-color:#FCD34D;box-shadow:0 4px 24px rgba(245,158,11,.14)}
+  .vip-header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:none;border:none;cursor:pointer}
+  .vip-header-label{display:flex;align-items:center;gap:12px;font-weight:900;font-size:17px;color:#1f2937}
+  .vip-arrow{font-size:18px;color:#d97706;transition:transform .25s}
+  .vip-body{display:none;border-top:1px solid #f3f4f6;padding:10px 12px 14px;flex-direction:column;gap:8px}
+  .vip-body.open{display:flex}
+  .sub-acc{border-radius:10px;overflow:hidden;margin-bottom:8px}
+  .sub-acc-emp{border:1.5px solid #ede9fe}
+  .sub-acc-inmo{border:1.5px solid #bfdbfe}
+  .sub-acc-veh{border:1.5px solid #fecaca}
+  .sub-header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:none;border:none;cursor:pointer;font-weight:700;font-size:14px;color:#1f2937}
+  .sub-body{display:none;padding:12px;background:#faf9ff}
+  .sub-body-inmo{background:#f8faff}
+  .sub-body-veh{background:#fff9f9}
+  .sub-body.open{display:block}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+  .dir-card{background:#fff;border-radius:14px;border:1.5px solid #e5e7eb;overflow:hidden;display:flex;flex-direction:column}
+  .dir-card-photo{width:100%;height:110px;background:#f3f4f6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .dir-card-photo span{font-size:11px;color:#9ca3af;font-weight:600}
+  .dir-card-body{padding:10px 12px 2px}
+  .dir-card-body strong{display:block;font-size:12px;font-weight:800;color:#1f2937;margin-bottom:2px}
+  .dir-card-body .meta{font-size:10px;color:#9ca3af;margin-bottom:4px}
+  .dir-card-body .desc{font-size:11px;color:#6b7280;line-height:1.35}
+  .dir-btn{display:flex;align-items:center;justify-content:center;gap:5px;padding:10px;border-radius:10px;font-weight:700;font-size:13px;color:#fff;margin:8px 14px 14px;border:none;cursor:pointer;text-decoration:none}
+  .dir-btn-wa{background:#25D366}
+  .dir-btn-blue{background:#2563eb}
+  .dir-btn-lblue{background:#0369a1}
+  .dir-btn-red{background:#dc2626}
+  .dir-btn-brown{background:#9a3412}
+  .sub-section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .card-col{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+
+  /* ── COMUNIDAD ── */
+  #comunidad{background:#fff;padding:48px 18px}
+  .comunidad-scroll{overflow-x:auto;scroll-snap-type:x mandatory;display:flex;gap:14px;padding-bottom:10px;-ms-overflow-style:none;scrollbar-width:none}
+  .comunidad-scroll::-webkit-scrollbar{display:none}
+  .com-card{min-width:230px;scroll-snap-align:start;flex-shrink:0;background:#fff;border:1.5px solid #e5e7eb;border-radius:18px;padding:20px 16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  .com-card-top{display:flex;align-items:center;gap:12px}
+  .com-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .com-card-title{font-size:14px;font-weight:800;color:#1f2937;line-height:1.25}
+  .com-card-sub{font-size:11px;color:#6b7280;line-height:1.35}
+  .com-join-fb{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border-radius:10px;background:#1877f2;color:#fff;font-weight:700;font-size:13px;border:none;cursor:pointer;text-decoration:none}
+  .com-join-wa{background:#25D366}
+
+  /* ── CONTACT ── */
+  #contact{background:#f8fafc;padding:56px 18px}
+  .contact-card{max-width:600px;margin:0 auto;background:#fff;border-radius:20px;border:1.5px solid #e5e7eb;box-shadow:0 4px 24px rgba(0,0,0,.06);padding:32px 24px;display:flex;flex-direction:column;gap:16px}
+  .contact-row{display:flex;align-items:center;gap:12px;font-size:14px;color:#374151}
+  .contact-row a{color:#2563eb;word-break:break-all}
+
+  /* ── FOOTER ── */
+  #footer{background:#0f172a;color:#94a3b8;padding:40px 18px 32px;text-align:center}
+  .footer-logo{font-size:18px;font-weight:900;color:#fff;margin-bottom:6px}
+  .footer-sub{font-size:13px;margin-bottom:20px}
+  .footer-emails{font-size:12px;display:flex;flex-direction:column;gap:4px;margin-bottom:20px}
+  .footer-emails a{color:#60a5fa}
+  .footer-visit{font-size:13px;color:#64748b}
+
+  /* ── BACK TO TOP ── */
+  #back-top{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:9999;width:52px;height:52px;border-radius:50%;background:rgba(15,23,42,.88);border:2px solid rgba(255,255,255,.22);color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 4px 20px rgba(0,0,0,.45);backdrop-filter:blur(8px);font-size:8px;font-weight:800;letter-spacing:.06em;transition:background .2s,transform .15s}
+  #back-top:hover{background:rgba(30,41,59,.97);transform:translateX(-50%) scale(1.08)}
+
+  /* ── MAX WIDTH ── */
+  .section-wrap{max-width:700px;margin:0 auto}
+  </style>
+  </head>
+  <body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <img src="https://i.ibb.co/pBnjCnG4/ei-1773267341248-removebg-preview.png" alt="Logo"/>
+        <div class="nav-brand-text">
+          <span class="nav-brand-title">Guía de Servicios</span>
+          <span class="nav-brand-sub">Posadas, Misiones</span>
+        </div>
+      </a>
+      <button class="hamburger" id="ham-btn" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ MOBILE MENU ═══ -->
+  <div id="mobile-menu">
+    <a href="#hero" onclick="closeMenu()">🏠 Inicio</a>
+    <a href="#services" onclick="closeMenu()">⚡ Servicios</a>
+    <a href="#transport" onclick="closeMenu()">🚌 Transporte</a>
+    <a href="#comercios" onclick="closeMenu()">🛒 Comercios</a>
+    <a href="#directorio" onclick="closeMenu()">🌟 Directorio VIP</a>
+    <a href="#comunidad" onclick="closeMenu()">👥 Comunidad</a>
+    <a href="#contact" onclick="closeMenu()">📬 Contacto</a>
+    <a href="https://share.google/FUGgEIoT9aebavrdW" target="_blank" class="menu-farmacia-btn">➕ Farmacias 24 HS</a>
+  </div>
+
+  <!-- ═══ TICKER SUPERIOR ═══ -->
+  <div id="ticker-top" style="margin-top:72px">
+    <div class="ticker-track">
+      <span class="ticker-inner" id="ticker-top-inner">
+        <span class="t-pub">📢 ESPACIO PUBLICITARIO DISPONIBLE — <a href="https://wa.me/5493764369001" target="_blank">CONTACTO AQUÍ</a> &nbsp;✦&nbsp;&nbsp;</span>
+        <a href="https://www.bybit.com/invite?ref=KY0MXR" target="_blank" class="t-crypto">
+          <span class="t-crypto-label">₿ CRYPTO</span>
+          <span class="t-crypto-prices" id="crypto-top">BTC -- · ETH -- · XRP --</span>
+          <span class="t-bybit">🔗 Operar en Bybit ›</span>
+        </a>
+        <span class="t-fx">💱 <span style="color:#86efac;font-weight:700">DIVISAS</span> <span id="fx-top">USD → R$ -- · USD → ₲ --</span></span>
+        <span class="t-pub">📢 ESPACIO PUBLICITARIO DISPONIBLE — <a href="https://wa.me/5493764369001" target="_blank">CONTACTO AQUÍ</a> &nbsp;✦&nbsp;&nbsp;</span>
+        <a href="https://www.bybit.com/invite?ref=KY0MXR" target="_blank" class="t-crypto">
+          <span class="t-crypto-label">₿ CRYPTO</span>
+          <span class="t-crypto-prices" id="crypto-top2">BTC -- · ETH -- · XRP --</span>
+          <span class="t-bybit">🔗 Operar en Bybit ›</span>
+        </a>
+        <span class="t-fx">💱 <span style="color:#86efac;font-weight:700">DIVISAS</span> <span id="fx-top2">USD → R$ -- · USD → ₲ --</span></span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">📍 Posadas, Misiones, Argentina</div>
+      <h1 class="hero-title">Guía de <em>Servicios</em> Públicos</h1>
+      <p class="hero-sub">Todo lo que necesitás saber sobre electricidad, agua y servicios municipales de Posadas en un solo lugar.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Ver Servicios ↓</a>
+        <a href="tel:911" class="btn-secondary">🚨 Emergencias</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SHARE ═══ -->
+  <div id="share-btn-wrap">
+    <button class="share-btn" onclick="shareWhatsApp()">📲 Compartir en WhatsApp</button>
+  </div>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about" style="padding:56px 18px">
+    <div class="section-wrap">
+      <p class="section-label" style="color:#f97316">Servicios Disponibles</p>
+      <h2 class="section-title">¿Qué encontrás aquí?</h2>
+      <p class="section-sub">Acceso rápido a los servicios más usados por los vecinos de Posadas.</p>
+      <div class="about-grid">
+        <div class="about-card"><span class="about-card-icon">⚡</span>EMSA — Luz</div>
+        <div class="about-card"><span class="about-card-icon">💧</span>SAMSA — Agua</div>
+        <div class="about-card"><span class="about-card-icon">🌪️</span>OPAD — Alertas</div>
+        <div class="about-card"><span class="about-card-icon">🚂</span>Tren / Puente</div>
+        <div class="about-card"><span class="about-card-icon">🚌</span>SUBE</div>
+        <div class="about-card"><span class="about-card-icon">🌿</span>Turismo</div>
+        <div class="about-card"><span class="about-card-icon">💊</span>Farmacias 24hs</div>
+        <div class="about-card"><span class="about-card-icon">📷</span>Cámaras</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section id="services">
+    <div class="section-wrap">
+      <p class="section-label" style="color:#3b82f6;margin-bottom:6px">Servicios Públicos · Posadas</p>
+      <h2 class="section-title">Servicios Esenciales</h2>
+      <p class="section-sub">Acceso directo a los organismos oficiales.</p>
+
+      <!-- EMSA -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="background:#fef3c7">⚡</div>
+          <div>
+            <p class="service-label" style="color:#d97706">Electricidad · EMSA</p>
+            <h3 class="service-title">Electricidad de Misiones (EMSA)</h3>
+          </div>
+        </div>
+        <p class="service-desc">Reportá cortes, consultá tu factura y accedé a los servicios digitales de EMSA.</p>
+        <div class="service-links">
+          <a href="https://www.emsa.com.ar" target="_blank" class="svc-btn" style="background:#d97706">🌐 Sitio oficial EMSA</a>
+          <a href="https://www.emsa.com.ar/servicios-en-linea" target="_blank" class="svc-btn" style="background:#92400e">📱 Servicios en línea</a>
+        </div>
+      </div>
+
+      <!-- SAMSA -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="background:#dbeafe">💧</div>
+          <div>
+            <p class="service-label" style="color:#2563eb">Agua Potable · SAMSA</p>
+            <h3 class="service-title">SAMSA — Agua de Posadas</h3>
+          </div>
+        </div>
+        <p class="service-desc">Reportá pérdidas, consultá cortes programados y pagá tu factura de agua.</p>
+        <div class="service-links">
+          <a href="https://www.samsa.com.ar" target="_blank" class="svc-btn" style="background:#2563eb">🌐 Sitio oficial SAMSA</a>
+        </div>
+      </div>
+
+      <!-- OPAD -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="background:#dcfce7">🌪️</div>
+          <div>
+            <p class="service-label" style="color:#16a34a">Alertas · OPAD</p>
+            <h3 class="service-title">OPAD — Alertas Meteorológicas</h3>
+          </div>
+        </div>
+        <p class="service-desc">Alertas de tormentas, inundaciones y fenómenos climáticos en Misiones.</p>
+        <div class="service-links">
+          <a href="https://www.facebook.com/OPADMisiones" target="_blank" class="svc-btn" style="background:#16a34a">📘 Ver alertas OPAD</a>
+        </div>
+      </div>
+
+      <!-- TREN -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="background:#f3e8ff">🚂</div>
+          <div>
+            <p class="service-label" style="color:#7c3aed">Internacional · Tren / Puente</p>
+            <h3 class="service-title">Tren Casimiro — Puente Roca</h3>
+          </div>
+        </div>
+        <p class="service-desc">Estado del cruce internacional y tren binacional Posadas–Encarnación.</p>
+        <div class="service-links">
+          <a href="https://www.facebook.com/TrenCasimiro" target="_blank" class="svc-btn" style="background:#7c3aed">🚂 Ver estado del tren</a>
+        </div>
+      </div>
+
+      <!-- SUBE -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="background:#fce7f3">🚌</div>
+          <div>
+            <p class="service-label" style="color:#db2777">Transporte · SUBE</p>
+            <h3 class="service-title">SUBE — Tarjeta de Transporte</h3>
+          </div>
+        </div>
+        <p class="service-desc">Consultá saldo, recargá y gestioná tu tarjeta SUBE en Posadas.</p>
+        <div class="service-links">
+          <a href="https://www.argentina.gob.ar/sube" target="_blank" class="svc-btn" style="background:#db2777">💳 Consultar SUBE</a>
+        </div>
+      </div>
+
+      <!-- TURISMO -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="background:#ecfdf5">🌿</div>
+          <div>
+            <p class="service-label" style="color:#059669">Turismo · Misiones</p>
+            <h3 class="service-title">Turismo Posadas</h3>
+          </div>
+        </div>
+        <p class="service-desc">Cataratas, Jesuiticas y atractivos de la provincia. Información oficial de turismo.</p>
+        <div class="service-links">
+          <a href="https://turismo.misiones.gob.ar" target="_blank" class="svc-btn" style="background:#059669">🌿 Portal de Turismo</a>
+        </div>
+      </div>
+
+      <!-- FARMACIAS -->
+      <div class="service-card" id="farmacias-card">
+        <div class="service-header">
+          <div class="service-icon" style="background:#dcfce7">💊</div>
+          <div>
+            <p class="service-label" style="color:#16a34a">Salud · Servicio Esencial</p>
+            <h3 class="service-title">🏪 Farmacias 24 Horas</h3>
+          </div>
+        </div>
+        <p class="service-desc">Consultá qué farmacias están siempre abiertas en Posadas para una urgencia médica.</p>
+        <div class="service-links">
+          <a href="https://share.google/FUGgEIoT9aebavrdW" target="_blank" class="svc-btn" style="background:#16a34a">📍 Ver Farmacias 24 HS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRANSPORT ═══ -->
+  <section id="transport">
+    <div class="section-wrap">
+      <p class="section-label" style="color:#0891b2;margin-bottom:6px">Movilidad Urbana</p>
+      <h2 class="section-title">Transporte</h2>
+      <p class="section-sub">Cámaras de tráfico y colectivos en tiempo real.</p>
+      <div class="transport-cards">
+        <div class="service-card" style="margin:0">
+          <div class="service-icon" style="background:#cffafe;margin-bottom:12px">📷</div>
+          <h3 style="font-size:16px;font-weight:800;margin-bottom:8px">Cámaras del Puente</h3>
+          <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Monitoreá el tráfico en el Puente Internacional.</p>
+          <a href="https://www.dnv.gob.ar/camaras" target="_blank" class="svc-btn" style="background:#0891b2">📷 Ver cámaras</a>
+        </div>
+        <div class="service-card" style="margin:0">
+          <div class="service-icon" style="background:#fce7f3;margin-bottom:12px">🚌</div>
+          <h3 style="font-size:16px;font-weight:800;margin-bottom:8px">Colectivos Posadas</h3>
+          <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Rastreá los colectivos urbanos en tiempo real.</p>
+          <a href="https://www.comoandaposadas.com.ar" target="_blank" class="svc-btn" style="background:#db2777">🚌 Ver colectivos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TICKER INFERIOR ═══ -->
+  <div id="ticker-bottom">
+    <div class="ticker-track">
+      <span class="ticker-inner">
+        <span class="t-pub">📢 ESPACIO PUBLICITARIO DISPONIBLE — <a href="https://wa.me/5493764369001" target="_blank">CONTACTO AQUÍ</a> &nbsp;✦&nbsp;&nbsp;</span>
+        <a href="https://www.bybit.com/invite?ref=KY0MXR" target="_blank" class="t-crypto">
+          <span class="t-crypto-label">₿ CRYPTO</span>
+          <span class="t-crypto-prices" id="crypto-bot">BTC -- · ETH -- · XRP --</span>
+          <span class="t-bybit">🔗 Operar en Bybit ›</span>
+        </a>
+        <span class="t-fx">💱 <span style="color:#86efac;font-weight:700">DIVISAS</span> <span id="fx-bot">USD → R$ -- · USD → ₲ --</span></span>
+        <span class="t-pub">📢 ESPACIO PUBLICITARIO DISPONIBLE — <a href="https://wa.me/5493764369001" target="_blank">CONTACTO AQUÍ</a> &nbsp;✦&nbsp;&nbsp;</span>
+        <a href="https://www.bybit.com/invite?ref=KY0MXR" target="_blank" class="t-crypto">
+          <span class="t-crypto-label">₿ CRYPTO</span>
+          <span class="t-crypto-prices" id="crypto-bot2">BTC -- · ETH -- · XRP --</span>
+          <span class="t-bybit">🔗 Operar en Bybit ›</span>
+        </a>
+        <span class="t-fx">💱 <span style="color:#86efac;font-weight:700">DIVISAS</span> <span id="fx-bot2">USD → R$ -- · USD → ₲ --</span></span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ COMERCIOS ═══ -->
+  <section id="comercios">
+    <div class="section-wrap">
+      <p class="section-label" style="color:#7c3aed;margin-bottom:6px">Comercios Locales</p>
+      <h2 class="section-title">Pinturas Posadas 🎨</h2>
+      <p class="section-sub">Tu ferretería y pinturería de confianza en Posadas.</p>
+      <div class="carousel-wrap" style="margin-bottom:28px">
+        <div class="carousel-slide">
+          <img class="carousel-img" src="https://i.ibb.co/ccWYj0vy/1772847768390.png" alt="Membrana Potenza"/>
+          <div class="carousel-caption"><strong>Membrana Potenza</strong><span>Impermeabilización premium</span></div>
+        </div>
+        <div class="carousel-slide">
+          <img class="carousel-img" src="https://i.ibb.co/FLrnpxh9/1773177946260.png" alt="Promo Forza"/>
+          <div class="carousel-caption"><strong>Promo Forza</strong><span>Pinturas y acabados</span></div>
+        </div>
+        <div class="carousel-slide">
+          <img class="carousel-img" src="https://i.ibb.co/Kx7Pc5wj/1772847041450.png" alt="Yaguareté 20L"/>
+          <div class="carousel-caption"><strong>Yaguareté 20L</strong><span>Látex interior/exterior</span></div>
+        </div>
+      </div>
+
+      <p class="section-label" style="color:#7c3aed;margin-bottom:14px">Rubros disponibles</p>
+      <div class="accordion-outer">
+        
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span>🍕 Gastronomía</span><span class="acc-arrow">▼</span>
+          </button>
+          <div class="acc-body">
+            <div style="text-align:center;padding:16px 0;color:#9ca3af;font-size:13px">
+              Próximamente · <a href="https://wa.me/5493764369001" target="_blank" style="color:#7c3aed;font-weight:700">Sugerir comercio ➕</a>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span>🛠️ Servicios del Hogar</span><span class="acc-arrow">▼</span>
+          </button>
+          <div class="acc-body">
+            <div style="text-align:center;padding:16px 0;color:#9ca3af;font-size:13px">
+              Próximamente · <a href="https://wa.me/5493764369001" target="_blank" style="color:#7c3aed;font-weight:700">Sugerir comercio ➕</a>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span>👗 Indumentaria</span><span class="acc-arrow">▼</span>
+          </button>
+          <div class="acc-body">
+            <div style="text-align:center;padding:16px 0;color:#9ca3af;font-size:13px">
+              Próximamente · <a href="https://wa.me/5493764369001" target="_blank" style="color:#7c3aed;font-weight:700">Sugerir comercio ➕</a>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span>💻 Tecnología</span><span class="acc-arrow">▼</span>
+          </button>
+          <div class="acc-body">
+            <div style="text-align:center;padding:16px 0;color:#9ca3af;font-size:13px">
+              Próximamente · <a href="https://wa.me/5493764369001" target="_blank" style="color:#7c3aed;font-weight:700">Sugerir comercio ➕</a>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span>🌸 Salud y Belleza</span><span class="acc-arrow">▼</span>
+          </button>
+          <div class="acc-body">
+            <div style="text-align:center;padding:16px 0;color:#9ca3af;font-size:13px">
+              Próximamente · <a href="https://wa.me/5493764369001" target="_blank" style="color:#7c3aed;font-weight:700">Sugerir comercio ➕</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DIRECTORIO VIP ═══ -->
+  <section id="directorio">
+    <div class="section-wrap">
+      <div class="vip-outer" id="vip-outer">
+        <button class="vip-header" onclick="toggleVIP()">
+          <span class="vip-header-label">🌟 DIRECTORIO VIP</span>
+          <span class="vip-arrow" id="vip-arrow">▼</span>
+        </button>
+        <div class="vip-body" id="vip-body">
+
+          <!-- Emprendedores -->
+          <div class="sub-acc sub-acc-emp">
+            <button class="sub-header" onclick="toggleSub(this,'#faf9ff')">
+              <span>🚀 Emprendedores</span><span class="acc-arrow" style="color:#7c3aed">▼</span>
+            </button>
+            <div class="sub-body">
+              <div class="card-grid">
+                
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+                <div class="dir-card" style="border-color:#ede9fe">
+                  <div class="dir-card-photo">📷<span>Agregar foto</span></div>
+                  <div class="dir-card-body">
+                    <strong>TU NOMBRE AQUÍ</strong>
+                    <div class="meta">Categoría · Posadas</div>
+                    <div class="desc">Descripción breve de tu emprendimiento.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-wa">📲 Consultar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inmobiliaria -->
+          <div class="sub-acc sub-acc-inmo">
+            <button class="sub-header" onclick="toggleSub(this,'#f8faff')">
+              <span>🏠 Inmobiliaria</span><span class="acc-arrow" style="color:#2563eb">▼</span>
+            </button>
+            <div class="sub-body sub-body-inmo">
+              <p class="sub-section-label" style="color:#2563eb">🔑 En Venta</p>
+              <div class="card-col">
+                
+                <div class="dir-card" style="border-color:#bfdbfe">
+                  <div class="dir-card-photo">📷<span>Foto propiedad</span></div>
+                  <div class="dir-card-body">
+                    <strong>PROPIEDAD EN VENTA</strong>
+                    <div class="meta">m² · Barrio · Posadas</div>
+                    <div class="desc">Ambientes, superficie, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-blue">📞 Consultar precio</a>
+                </div>
+                <div class="dir-card" style="border-color:#bfdbfe">
+                  <div class="dir-card-photo">📷<span>Foto propiedad</span></div>
+                  <div class="dir-card-body">
+                    <strong>PROPIEDAD EN VENTA</strong>
+                    <div class="meta">m² · Barrio · Posadas</div>
+                    <div class="desc">Ambientes, superficie, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-blue">📞 Consultar precio</a>
+                </div>
+                <div class="dir-card" style="border-color:#bfdbfe">
+                  <div class="dir-card-photo">📷<span>Foto propiedad</span></div>
+                  <div class="dir-card-body">
+                    <strong>PROPIEDAD EN VENTA</strong>
+                    <div class="meta">m² · Barrio · Posadas</div>
+                    <div class="desc">Ambientes, superficie, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-blue">📞 Consultar precio</a>
+                </div>
+              </div>
+              <p class="sub-section-label" style="color:#0369a1">🏠 En Alquiler</p>
+              <div class="card-col">
+                
+                <div class="dir-card" style="border-color:#bae6fd">
+                  <div class="dir-card-photo">📷<span>Foto propiedad</span></div>
+                  <div class="dir-card-body">
+                    <strong>PROPIEDAD EN ALQUILER</strong>
+                    <div class="meta">m² · Barrio · Posadas</div>
+                    <div class="desc">Ambientes, precio mensual.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-lblue">📞 Consultar alquiler</a>
+                </div>
+                <div class="dir-card" style="border-color:#bae6fd">
+                  <div class="dir-card-photo">📷<span>Foto propiedad</span></div>
+                  <div class="dir-card-body">
+                    <strong>PROPIEDAD EN ALQUILER</strong>
+                    <div class="meta">m² · Barrio · Posadas</div>
+                    <div class="desc">Ambientes, precio mensual.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-lblue">📞 Consultar alquiler</a>
+                </div>
+                <div class="dir-card" style="border-color:#bae6fd">
+                  <div class="dir-card-photo">📷<span>Foto propiedad</span></div>
+                  <div class="dir-card-body">
+                    <strong>PROPIEDAD EN ALQUILER</strong>
+                    <div class="meta">m² · Barrio · Posadas</div>
+                    <div class="desc">Ambientes, precio mensual.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-lblue">📞 Consultar alquiler</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vehículos -->
+          <div class="sub-acc sub-acc-veh">
+            <button class="sub-header" onclick="toggleSub(this,'#fff9f9')">
+              <span>🚗 Vehículos</span><span class="acc-arrow" style="color:#dc2626">▼</span>
+            </button>
+            <div class="sub-body sub-body-veh">
+              <p class="sub-section-label" style="color:#dc2626">🚗 Autos</p>
+              <div class="card-col">
+                
+                <div class="dir-card" style="border-color:#fecaca">
+                  <div class="dir-card-photo">📷<span>Foto del auto</span></div>
+                  <div class="dir-card-body">
+                    <strong>MARCA MODELO AÑO</strong>
+                    <div class="meta">km · Color · Posadas</div>
+                    <div class="desc">Equipamiento, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-red">📞 Consultar precio</a>
+                </div>
+                <div class="dir-card" style="border-color:#fecaca">
+                  <div class="dir-card-photo">📷<span>Foto del auto</span></div>
+                  <div class="dir-card-body">
+                    <strong>MARCA MODELO AÑO</strong>
+                    <div class="meta">km · Color · Posadas</div>
+                    <div class="desc">Equipamiento, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-red">📞 Consultar precio</a>
+                </div>
+                <div class="dir-card" style="border-color:#fecaca">
+                  <div class="dir-card-photo">📷<span>Foto del auto</span></div>
+                  <div class="dir-card-body">
+                    <strong>MARCA MODELO AÑO</strong>
+                    <div class="meta">km · Color · Posadas</div>
+                    <div class="desc">Equipamiento, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-red">📞 Consultar precio</a>
+                </div>
+              </div>
+              <p class="sub-section-label" style="color:#9a3412">🏍️ Motos</p>
+              <div class="card-col">
+                
+                <div class="dir-card" style="border-color:#fed7aa">
+                  <div class="dir-card-photo">📷<span>Foto de la moto</span></div>
+                  <div class="dir-card-body">
+                    <strong>MARCA MODELO AÑO</strong>
+                    <div class="meta">km · Color · Posadas</div>
+                    <div class="desc">Equipamiento, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-brown">📞 Consultar precio</a>
+                </div>
+                <div class="dir-card" style="border-color:#fed7aa">
+                  <div class="dir-card-photo">📷<span>Foto de la moto</span></div>
+                  <div class="dir-card-body">
+                    <strong>MARCA MODELO AÑO</strong>
+                    <div class="meta">km · Color · Posadas</div>
+                    <div class="desc">Equipamiento, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-brown">📞 Consultar precio</a>
+                </div>
+                <div class="dir-card" style="border-color:#fed7aa">
+                  <div class="dir-card-photo">📷<span>Foto de la moto</span></div>
+                  <div class="dir-card-body">
+                    <strong>MARCA MODELO AÑO</strong>
+                    <div class="meta">km · Color · Posadas</div>
+                    <div class="desc">Equipamiento, precio.</div>
+                  </div>
+                  <a href="https://bit.ly/47gLQmP" target="_blank" class="dir-btn dir-btn-brown">📞 Consultar precio</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMUNIDAD ═══ -->
+  <section id="comunidad">
+    <div class="section-wrap">
+      <p class="section-label" style="color:#1877f2;margin-bottom:6px">Red de Vecinos</p>
+      <h2 class="section-title" translate="no">Comunidad</h2>
+      <p class="section-sub">Grupos de vecinos y comunidades activas de Posadas.</p>
+      <div class="comunidad-scroll">
+        <div class="com-card">
+          <div class="com-card-top">
+            <div class="com-card-icon" style="background:#dbeafe">📘</div>
+            <div><div class="com-card-title">Vecinos de Posadas</div></div>
+          </div>
+          <div class="com-card-sub">Noticias y novedades del barrio en tiempo real.</div>
+          <a href="https://www.facebook.com/groups/vecinosposadas" target="_blank" class="com-join-fb">📘 UNIRSE</a>
+        </div>
+        <div class="com-card">
+          <div class="com-card-top">
+            <div class="com-card-icon" style="background:#dcfce7">💬</div>
+            <div><div class="com-card-title">Posadas al Día</div></div>
+          </div>
+          <div class="com-card-sub">Información local actualizada por vecinos.</div>
+          <a href="https://wa.me/5493764369001" target="_blank" class="com-join-fb com-join-wa">💬 UNIRSE</a>
+        </div>
+        <div class="com-card">
+          <div class="com-card-top">
+            <div class="com-card-icon" style="background:#dbeafe">📘</div>
+            <div><div class="com-card-title">Eventos Posadas</div></div>
+          </div>
+          <div class="com-card-sub">Actividades culturales y eventos de la ciudad.</div>
+          <a href="https://www.facebook.com/groups/eventosposadas" target="_blank" class="com-join-fb">📘 UNIRSE</a>
+        </div>
+        <div class="com-card">
+          <div class="com-card-top">
+            <div class="com-card-icon" style="background:#dcfce7">💬</div>
+            <div><div class="com-card-title">Trueque y Ventas</div></div>
+          </div>
+          <div class="com-card-sub">Comprá, vendé e intercambiá en Posadas.</div>
+          <a href="https://wa.me/5493764369001" target="_blank" class="com-join-fb com-join-wa">💬 UNIRSE</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact">
+    <div class="section-wrap">
+      <p class="section-label" style="color:#7c3aed;margin-bottom:6px">Contacto</p>
+      <h2 class="section-title">¿Tenés alguna consulta?</h2>
+      <p class="section-sub">Escribinos por cualquiera de estos medios.</p>
+      <div class="contact-card">
+        <div class="contact-row">📧 <a href="mailto:posadasmasfacil@gmail.com">posadasmasfacil@gmail.com</a></div>
+        <div class="contact-row">📧 <a href="mailto:portaldigitalofficiall@gmail.com">portaldigitalofficiall@gmail.com</a></div>
+        <div class="contact-row">📲 <a href="https://wa.me/5493764369001" target="_blank">WhatsApp directo</a></div>
+        <a href="https://bit.ly/47gLQmP" target="_blank" class="svc-btn" style="background:#7c3aed;margin-top:8px">📣 Publicitar mi negocio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer id="footer">
+    <div class="footer-logo">📍 Posadas Más Fácil</div>
+    <div class="footer-sub">Guía de Servicios Públicos — Posadas, Misiones, Argentina</div>
+    <div class="footer-emails">
+      <a href="mailto:posadasmasfacil@gmail.com">posadasmasfacil@gmail.com</a>
+      <a href="mailto:portaldigitalofficiall@gmail.com">portaldigitalofficiall@gmail.com</a>
+    </div>
+    <div class="footer-visit">👁 Visitas: <span id="visit-count">...</span></div>
+    <p style="font-size:11px;color:#475569;margin-top:16px">© 2025 Posadas Más Fácil · Hecho con ❤️ en Posadas</p>
+  </footer>
+
+  <!-- ═══ BACK TO TOP ═══ -->
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Inicio">▲<span>INICIO</span></button>
+
+  <script>
+  // ── Navbar scroll ──────────────────────────────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, {passive:true});
+
+  // ── Mobile menu ────────────────────────────────────────────────────
+  const hamBtn = document.getElementById('ham-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamBtn.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamBtn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Accordion rubros ───────────────────────────────────────────────
+  function toggleAcc(btn) {
+    const body = btn.nextElementSibling;
+    const arrow = btn.querySelector('.acc-arrow');
+    const isOpen = body.classList.toggle('open');
+    arrow.style.transform = isOpen ? 'rotate(180deg)' : '';
+  }
+
+  // ── Directorio VIP ─────────────────────────────────────────────────
+  function toggleVIP() {
+    const body = document.getElementById('vip-body');
+    const outer = document.getElementById('vip-outer');
+    const arrow = document.getElementById('vip-arrow');
+    const isOpen = body.classList.toggle('open');
+    outer.classList.toggle('open', isOpen);
+    arrow.style.transform = isOpen ? 'rotate(180deg)' : '';
+  }
+  function toggleSub(btn, bg) {
+    const body = btn.nextElementSibling;
+    const arrow = btn.querySelector('.acc-arrow');
+    const isOpen = body.classList.toggle('open');
+    if (isOpen) body.style.background = bg;
+    arrow.style.transform = isOpen ? 'rotate(180deg)' : '';
+  }
+
+  // ── Share WhatsApp ─────────────────────────────────────────────────
+  function shareWhatsApp() {
+    const msg = encodeURIComponent('Mirá esta guía de servicios de Posadas: ' + window.location.href);
+    window.open('https://api.whatsapp.com/send?text=' + msg, '_blank');
+  }
+
+  // ── Visitor counter ────────────────────────────────────────────────
+  (function() {
+    const key = 'pf_visit_count';
+    let count = parseInt(localStorage.getItem(key) || '1247', 10) + 1;
+    localStorage.setItem(key, count);
+    document.getElementById('visit-count').textContent = count.toLocaleString('es-AR');
+  })();
+
+  // ── Ticker API ─────────────────────────────────────────────────────
+  function fmtN(n, dec) {
+    if (n == null) return '--';
+    return n.toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+  }
+
+  async function loadTicker() {
+    let btc=null, eth=null, xrp=null, brl=null, pyg=null;
+    try {
+      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple&vs_currencies=usd');
+      if (res.ok) {
+        const d = await res.json();
+        btc = d?.bitcoin?.usd; eth = d?.ethereum?.usd; xrp = d?.ripple?.usd;
+      }
+    } catch(e){}
+    try {
+      const res = await fetch('https://open.er-api.com/v6/latest/USD');
+      if (res.ok) {
+        const d = await res.json();
+        brl = d?.rates?.BRL; pyg = d?.rates?.PYG;
+      }
+    } catch(e){}
+
+    const cryptoText = 'BTC $' + fmtN(btc,2) + ' USD · ETH $' + fmtN(eth,2) + ' USD · XRP $' + fmtN(xrp,4) + ' USD';
+    const fxText = 'USD → R$ ' + fmtN(brl,2) + ' · USD → ₲ ' + fmtN(pyg,0);
+
+    ['crypto-top','crypto-top2','crypto-bot','crypto-bot2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = cryptoText;
+    });
+    ['fx-top','fx-top2','fx-bot','fx-bot2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = fxText;
+    });
+  }
+
+  loadTicker();
+  setInterval(loadTicker, 5 * 60 * 1000);
+  </script>
+  </body>
+  </html>
